@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0077cc;
+            padding: 1rem 2rem;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #005fa3;
+            border-radius: 4px;
+        }
+        
+        /* Profile dropdown */
+        .profile-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            color: black;
+            min-width: 120px;
+            border-radius: 6px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        
+        .dropdown li a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        
+        .dropdown li a:hover {
+            background-color: #eee;
+        }
+        
+        .profile-menu:hover .dropdown {
+            display: block;
+        }
+        
+        /* Profile Edit Page */
+        .profile-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #0077cc;
+        }
+        
+        /* Profile picture upload styling */
+        .profile-picture-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-upload {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            border: 3px solid #0077cc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .profile-upload img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-upload .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .profile-upload:hover .upload-overlay {
+            opacity: 1;
+        }
+        
+        .profile-upload input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .upload-text {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .button-container button {
+            padding: 0.75rem 2rem;
+            background-color: #0077cc;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .button-container button:hover {
+            background-color: #005fa3;
+        }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .navigation ul {
+            list-style-type: disc;
+            display: inline-block;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .navigation li {
+            margin-bottom: 10px;
+        }
+        
+        .navigation a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+        
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LMS</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="profile-menu">
+            <img src="/api/placeholder/40/40" alt="Profile" class="profile-pic">
+            <ul class="dropdown">
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <h1>Edit Profile</h1>
+        
+        <form>
+            <div class="profile-picture-container">
+                <div class="profile-upload">
+                    <img src="/api/placeholder/150/150" alt="Profile Picture" id="profile-preview">
+                    <div class="upload-overlay">
+                        <span>Change Picture</span>
+                    </div>
+                    <input type="file" id="profile-picture-input" accept="image/*">
+                </div>
+                <p class="upload-text">Click on the image to change your profile picture</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" value="User's Full Name">
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="User123">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="user@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" value="+1234567890">
+            </div>
+            
+            <div class="form-group">
+                <label for="birth-date">Date of Birth:</label>
+                <input type="date" id="birth-date" value="1990-01-01">
+            </div>
+            
+            <div class="button-container">
+                <button type="submit">Save Changes</button>
+            </div>
+        </form>
+        
+        <div class="navigation">
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to preview uploaded image
+        document.getElementById('profile-picture-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
