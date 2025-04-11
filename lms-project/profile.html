@@ -125,7 +125,7 @@
             overflow: hidden;
             margin-bottom: 1rem;
             cursor: pointer;
-            border: 3px solid #0077cc;
+            border: 3px solid #0077cc; /* Blue border color matching navbar */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
@@ -141,7 +141,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 119, 204, 0.7); /* Blue overlay with transparency */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -169,16 +169,17 @@
             font-size: 0.9rem;
         }
         
+        /* Left-aligned form groups */
         .form-group {
             margin-bottom: 1.2rem;
-            text-align: center;
+            text-align: left;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: #333;
-            text-align: center;
+            text-align: left;
             font-weight: bold;
         }
         
@@ -255,6 +256,7 @@
         <div class="profile-menu">
             <img src="/api/placeholder/40/40" alt="Profile" class="profile-pic">
             <ul class="dropdown">
+                
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -273,32 +275,32 @@
                     </div>
                     <input type="file" id="profile-picture-input" accept="image/*">
                 </div>
-                <p class="upload-text">Click on the image to change your profile picture</p>
+                <p class="upload-text">Click on the image to change profile picture</p>
             </div>
             
             <div class="form-group">
                 <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" value="User's Full Name">
+                <input type="text" id="full-name" value="Lysan Gechleang">
             </div>
             
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" value="User123">
+                <input type="text" id="username" value="gechleang">
             </div>
             
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" value="user@example.com">
+                <input type="email" id="email" value="gechleanglysan1211@gmail.com>
             </div>
             
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" value="+1234567890">
+                <input type="tel" id="phone" value="+855 85 535 387">
             </div>
             
             <div class="form-group">
                 <label for="birth-date">Date of Birth:</label>
-                <input type="date" id="birth-date" value="1990-01-01">
+                <input type="date" id="birth-date" value="11/12/2005">
             </div>
             
             <div class="button-container">
@@ -308,10 +310,8 @@
         
         <div class="navigation">
             <ul>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Edit Profile</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Login</a></li>
+                
+                <li><a href="#">Logout</a></li>
             </ul>
         </div>
     </div>
